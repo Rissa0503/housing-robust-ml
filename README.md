@@ -1,6 +1,8 @@
-# 🏠 Robust Housing Price Modeling under Imperfect Data
+# Robust Housing Price Modeling under Imperfect Data
+(Developed during internship at Shanghai Liancheng Real Estate Appraisal Consulting Co., Ltd.)) 
 
-**Author:** Risa (Zhejiang University, Land Resource Management)  
+**Author:** Risa (Zhejiang University)
+ 
 **Focus:** Robust Machine Learning · Interpretability · Imperfect Data  
 
 ---
