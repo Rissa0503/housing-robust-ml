@@ -7,7 +7,7 @@
 
 ## 🔍 What This Project Is About
 
-This project goes beyond standard Kaggle-style prediction.
+This project is extended an industry-driven housing price prediction task into a research-oriented study on model behavior under imperfect data conditions.
 
 Instead of only asking:
 
