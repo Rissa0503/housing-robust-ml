@@ -1,134 +1,115 @@
 # Robust Housing Price Modeling under Imperfect Data
-(Developed during internship at Shanghai Liancheng Real Estate Appraisal Consulting Co., Ltd.)) 
 
-**Author:** Risa (Zhejiang University)
- 
+*(Developed during internship at Shanghai Liancheng Real Estate Appraisal Consulting Co., Ltd.)*
+
+**Author:** Risa (Zhejiang University)  
 **Focus:** Robust Machine Learning · Interpretability · Imperfect Data  
 
 ---
 
-## 🔍 What This Project Is About
+## Overview
 
-This project is extended an industry-driven housing price prediction task into a research-oriented study on model behavior under imperfect data conditions.
+This project extends a real-world housing price prediction task into a study of **model behavior under imperfect data and supervision**.
 
-Instead of only asking:
+Instead of focusing solely on predictive accuracy, I examine:
 
-> “Can we predict housing prices accurately?”
+- how stable model predictions are under feature imperfections,
+- how performance varies across data segments,
+- and what drives model decisions beyond average metrics.
 
-I focus on a more research-oriented question:
+Due to confidentiality constraints, the methodology is reproduced on the public Ames dataset.
 
-> **Can a model remain reliable under imperfect data and imperfect supervision?**
-
----
-
-## Project Overview
-
-Due to confidentiality constraints of real-world data from my internship, I reproduced the methodology using the public Ames dataset to demonstrate the modeling and analysis pipeline:
-
-- **EDA → Feature Engineering → Model Comparison → SHAP Interpretation → Stress Testing**
-
-The core model is:
-
-- `GradientBoostingRegressor` (strong nonlinear baseline)
+Pipeline:
+EDA → Feature Engineering → Model Comparison → SHAP Interpretation → Stress Testing
 
 ---
 
-## Key Contributions
+## Model
 
-### 1. Structured Feature Engineering
-
-- Domain-driven features:
-  - `TotalSF`, `TotalBath`
-  - Interaction terms: `OverallQual × Area`
-- Temporal signals:
-  - `HouseAge`, `YearsSinceRemod`
-- Ratio & aggregation features
-
-The model learns **compositional structure**, not isolated variables.
+- Main model: `GradientBoostingRegressor`
+- Used as a strong nonlinear baseline for studying robustness and interpretability
 
 ---
 
-### 2. Model Interpretability (SHAP)
+## Key Findings
 
-I use SHAP to understand:
+### 1. Feature Dependence Is Structured
 
-- which variables drive predictions
-- how feature values shift outputs
-- whether results align with domain intuition
+Model predictions are primarily driven by **interaction effects between quality and space**, rather than individual features.
 
-**Key finding:**
-
-> The model is dominated by interaction effects between **quality and space**, rather than single variables.
+Removing high-value feature groups (e.g., garage) leads to the largest performance degradation, indicating strong reliance on structural variables.
 
 ---
 
-### 3. Stress Testing under Imperfect Conditions
+### 2. Stability under Feature Perturbation
 
-This is the core research-oriented component.
+Small perturbations in numeric features result in minimal performance change.
 
-I evaluate robustness under:
-
-#### (A) Imperfect Data
-- feature noise (3%, 5%)
-- missing feature groups (garage / basement)
-- subgroup heterogeneity (price segments)
-
-#### (B) Imperfect Supervision
-- target corruption (Gaussian / subset noise)
+→ The model is relatively robust to measurement noise.
 
 ---
 
-## Main Findings
+### 3. Subgroup Heterogeneity
 
-### 1. Strong Local Stability
-- Small feature perturbations → almost no performance drop  
-→ model is **robust to measurement noise**
+Model performance varies significantly across price segments.
 
----
+In particular, prediction errors are higher for low-price houses.
 
-### 2. Feature Dependence Is Structured
-- Removing garage features → largest degradation  
-→ model relies on **high-value feature groups**
+→ Average metrics mask distributional imbalance.
 
 ---
 
-### 3. Subgroup Weakness
-- Performance is significantly worse for **low-price houses**  
+### 4. Sensitivity to Feature Removal
 
-→ average metrics hide **distributional imbalance**
+Removing certain feature groups causes disproportionate performance drops.
+
+→ The model is vulnerable to feature shift in structurally important variables.
 
 ---
 
-### 4. Mild Supervision Noise Tolerance
-- Small target corruption → minimal impact  
+### 5. Mild Supervision Noise Tolerance
 
-→ model shows **initial robustness under imperfect supervision**
+Small levels of target corruption do not significantly affect performance.
+
+→ The model shows initial robustness under imperfect supervision.
+
+---
+
+## Interpretation
+
+SHAP analysis reveals:
+
+- strong nonlinear interactions between key variables,
+- concentration of importance in a small subset of structural features,
+- and consistent alignment with domain intuition (quality, area, age).
 
 ---
 
 ## Why This Matters
 
-This project reframes a standard regression task into a **trustworthy ML problem**:
+This project reframes a standard regression task into a problem of **model reliability**:
 
-- not only *accuracy*
-- but also *stability*, *interpretability*, and *failure modes*
+- not only accuracy,
+- but also stability, interpretability, and failure modes.
 
-Although this is a tabular regression setting, the same concerns arise in:
+These issues are closely related to:
 
-- noisy-label learning  
+- learning with noisy labels  
 - weak supervision  
-- real-world deployment  
+- real-world deployment under imperfect data  
 
 ---
 
-## Connection to My Research Interest
+## Research Direction
 
-This project reflects my interest in:
+This work reflects my interest in:
 
-> **Robust machine learning under imperfect data and imperfect supervision**
+**Robust machine learning under imperfect supervision**
 
-In particular:
-- how models behave when assumptions are violated  
-- how to diagnose failure modes beyond average metrics  
-- how interpretability and robustness interact  
+with a focus on:
 
+- failure modes of learning systems  
+- robustness under distribution shift  
+- interaction between interpretability and reliability   
+
+*This project is exploratory and aims to bridge practical modeling with questions in robust and trustworthy machine learning.*
