@@ -23,7 +23,7 @@ I focus on a more research-oriented question:
 
 ## Project Overview
 
-Using the Ames Housing dataset, I build a full pipeline:
+Due to confidentiality constraints of real-world data from my internship, I reproduced the methodology using the public Ames dataset to demonstrate the modeling and analysis pipeline:
 
 - **EDA → Feature Engineering → Model Comparison → SHAP Interpretation → Stress Testing**
 
