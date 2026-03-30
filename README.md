@@ -2,7 +2,7 @@
 
 *(Developed during internship at Shanghai Liancheng Real Estate Appraisal Consulting Co., Ltd.)*
 
-**Author:** Risa (Zhejiang University)  
+**Author:** Lisha Ma (Zhejiang University)  
 **Focus:** Robust Machine Learning · Interpretability · Imperfect Data  
 
 ---
